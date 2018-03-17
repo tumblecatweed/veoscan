@@ -1,28 +1,47 @@
-<html>
+<html lang="en">
   <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <title>Amoveo Network Status</title>
   </head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <body>
-    <h1>Amoveo Peer Status</h1>
-    <p>Last Updated: {{ peers[0].updated_at.strftime('%d %b, %Y %H:%M') }} (UTC)</p>
-    <table>
-      <thead>
-        <th>URL</th>
-        <th>Height</th>
-        <th></th>
-      </thead>
-      <tbody>
-        {% for peer in peers %}
-        <tr>
-          <td>{{peer.url}}</td>
-          <td>{{peer.height}}</td>
-          {% if peer.description != None %}
-          <td>{{peer.description}}</td>
-          {% else %}
-          <td></td>
-          {% endif %}
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Amoveo Network Status</h1>
+          <p>Last Updated: {{ peers[0].updated_at.strftime('%d %b, %Y %H:%M') }} (UTC)</p>
+          <table class="table">
+            <thead>
+              <th>URL</th>
+              <th>Height</th>
+              <th></th>
+            </thead>
+            <tbody>
+              {% for peer in peers %}
+              <tr>
+                <td>{{peer.url}}</td>
+
+                {% if peer.height != None %}
+                <td>{{peer.height}}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+
+                {% if peer.description != None %}
+                <td>{{peer.description}}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
