@@ -22,19 +22,16 @@
               {% for peer in peers %}
               <tr>
                 <td>{{peer.url}}</td>
-
                 {% if peer.height != None %}
                 <td>{{peer.height}}</td>
                 {% else %}
                 <td></td>
                 {% endif %}
-
                 {% if peer.description != None %}
                 <td>{{peer.description}}</td>
                 {% else %}
                 <td></td>
                 {% endif %}
-
               </tr>
               {% endfor %}
             </tbody>
@@ -42,5 +39,8 @@
         </div>
       </div>
     </div>
+    <script>
+      setTimeout("location.reload()",1000*60*3);
+    </script>
   </body>
 </html>
