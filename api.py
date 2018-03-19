@@ -37,12 +37,13 @@ class Parser(object):
 # [52,234,133,196,8080], # Mandel
 # [159,65,120,84,8080], # Zack
 
-def get_initial_peer_list():
-    parser = Parser()
-    #first_peer_url = 'http://159.65.120.84:8080'
-    first_peer_url = 'http://52.234.133.196:8080'
-    response = requests.post(first_peer_url, '["peers"]')
-    return parser.get_peers(response.json())
+def get_initial_peer_urls():
+    lookup_urls = ['http://52.234.133.196:8080',
+                   'http://159.65.173.9:8080',
+                   'http://159.89.106.253:8080',
+                   'http://159.65.120.84:8080']
+    urls = get_all_peers(lookup_urls)
+    return urls 
 
 
 def get_height(url):

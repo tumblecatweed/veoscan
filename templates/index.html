@@ -12,9 +12,13 @@
         <div class="col-md-12">
           <h1>Amoveo Network Status</h1>
           <p>Last Updated: {{ peers[0].updated_at.strftime('%d %b, %Y %H:%M') }} (UTC)</p>
+          <p>Top height = {{ top_height }}</p>
+          <p>Number of top height peers = {{ num_top_height_peers }}</p>
           <table class="table">
             <thead>
               <th>URL</th>
+              <th></th>
+              <th></th>
               <th>Height</th>
               <th></th>
             </thead>
@@ -22,8 +26,14 @@
               {% for peer in peers %}
               <tr>
                 <td>{{peer.url}}</td>
+                <td><a href="{{peer.url}}/explorer.html">explorer</a></td>
+                <td><a href="{{peer.url}}/wallet.html">wallet</a></td>
                 {% if peer.height != None %}
+                  {% if peer.height == top_height %}
+                <td class="text-success">{{peer.height}}</td>
+                  {% else %}
                 <td>{{peer.height}}</td>
+                  {% endif %}
                 {% else %}
                 <td></td>
                 {% endif %}
@@ -39,8 +49,8 @@
         </div>
       </div>
     </div>
-    <script>
-      setTimeout("location.reload()",1000*60*3);
-    </script>
+  <script>
+    setTimeout("location.reload()",1000*60*3);
+  </script>
   </body>
 </html>

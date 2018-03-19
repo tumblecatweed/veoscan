@@ -6,10 +6,22 @@ from models import session
 app = Flask(__name__)
 
 
-@app.route('/')
+def get_top_height(peers):
+    heights = [p.height if p.height else 0 for p in peers]
+    return sorted(heights)[-1]
+
+
+def get_num_height_peers(height):
+    peers = session.query(Peer).filter_by(height=height).all()
+    return len(peers)
+
+
+@app.route('/amoveo-network-status')
 def index():
     peers = session.query(Peer).order_by(Peer.height.desc()).order_by(Peer.url.desc()).all()
-    return render_template('index.html', peers=peers)
+    top_height = get_top_height(peers)
+    num_top_height_peers = get_num_height_peers(top_height)
+    return render_template('index.html', peers=peers, top_height=top_height, num_top_height_peers=num_top_height_peers)
 
 
 if __name__ == '__main__':

@@ -10,7 +10,7 @@ from sqlalchemy import String
 from sqlalchemy import Text
 
 
-engine = create_engine('sqlite:///veo.db')
+engine = create_engine('sqlite:////var/www/veoscan/veo.db')
 meta = MetaData()
 session = scoped_session(sessionmaker(autocommit=False,
                                       autoflush=False,
