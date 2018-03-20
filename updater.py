@@ -26,7 +26,8 @@ def update_peers():
         try:
             height = get_height(peer.url)
             peer.height = height
-            peer.updated_at = datetime.utcnow()
+            if height is not None:
+                peer.updated_at = datetime.utcnow()
             session.add(peer)
             session.commit()
         except:
