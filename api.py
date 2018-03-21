@@ -43,7 +43,7 @@ def get_initial_peer_urls():
                    'http://159.89.106.253:8080',
                    'http://159.65.120.84:8080']
     urls = get_all_peers(lookup_urls)
-    return urls 
+    return urls
 
 
 def get_height(url):
@@ -79,8 +79,3 @@ def get_all_peers(urls):
             print('Could not get from {}'.format(url))
 
     return list(set(all_peers))
-
-
-if __name__ == '__main__':
-    peers = get_initial_peer_list()
-    heights = get_heights(peers)
