@@ -38,18 +38,18 @@ class Parser(object):
 # [159,65,120,84,8080], # Zack
 
 def get_initial_peer_urls():
-    lookup_urls = ['http://52.234.133.196:8080',
-                   'http://159.65.173.9:8080',
+    lookup_urls = ['http://159.65.173.9:8080',
                    'http://159.89.106.253:8080',
-                   'http://159.65.120.84:8080']
-    urls = get_all_peers(lookup_urls)
+                   'http://159.65.120.84:8080',
+                   'http://45.77.196.69:8080' ]
+    urls = get_all_peers(lookup_urls) + lookup_urls
     return urls
 
 
 def get_height(url):
     parser = Parser()
     try:
-        response = requests.post(url, '["height"]')
+        response = requests.post(url, '["height"]', timeout=0.5)
         height = parser.get_heights(response.json())
         print('{:28} height: {:>5}'.format(url, height))
         return height
@@ -70,7 +70,7 @@ def get_all_peers(urls):
     all_peers = []
     for url in urls:
         try:
-            response = requests.post(url, '["peers"]')
+            response = requests.post(url, '["peers"]', timeout=0.5)
             response_json = response.json()
             peers = parser.get_peers(response_json)
             print('{} {}'.format(url, len(peers)))
