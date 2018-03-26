@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-md-12">
           <h1>Amoveo Network Status</h1>
-          <p>Last Updated: {{ peers[0].updated_at.strftime('%d %b, %Y %H:%M') }} (UTC)</p>
+          <p>Last Updated: {{ peers[0].updated_at.strftime('%d %b, %Y %H:%M:%S') }} (UTC) (Update interval is 1 min)</p>
           <p>Top height = {{ top_height }}</p>
           <p>Number of top height peers = {{ num_top_height_peers }}</p>
           <table class="table">
@@ -50,7 +50,7 @@
       </div>
     </div>
   <script>
-    setTimeout("location.reload()",1000*60*3);
+    setTimeout("location.reload()",1000*60);
   </script>
   </body>
 </html>
