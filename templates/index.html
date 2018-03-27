@@ -1,19 +1,15 @@
-<html lang="en">
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <title>Amoveo Network Status</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
+{% extends 'layout.html' %}
+{% block content %}
           <h1>Amoveo Network Status</h1>
-          <p>Last Updated: {{ peers[0].updated_at.strftime('%d %b, %Y %H:%M:%S') }} (UTC) (Update interval is 1 min)</p>
-          <p>Top height = {{ top_height }}</p>
-          <p>Number of top height peers = {{ num_top_height_peers }}</p>
+          <p class="text-muted">Last Updated: {{ peers[0].updated_at.strftime('%d %b, %Y %H:%M:%S') }} (UTC) (Update interval is 1 min)</p>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="text-muted">Top height = {{ top_height }}
+            </div>
+            <div class="col-sm-3">
+              <p class="text-muted">Number of top height peers = {{ num_top_height_peers }}</p>
+            </div>
+          </div>
           <table class="table">
             <thead>
               <th>URL</th>
@@ -46,11 +42,7 @@
               {% endfor %}
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
   <script>
     setTimeout("location.reload()",1000*60);
   </script>
-  </body>
-</html>
+{% endblock %}
