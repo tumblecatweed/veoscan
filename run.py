@@ -1,5 +1,7 @@
 from flask import Flask
 from flask import render_template
+from flask import redirect
+from flask import url_for
 from models import Peer
 from models import session
 
@@ -16,8 +18,17 @@ def get_num_height_peers(height):
     return len(peers)
 
 
-@app.route('/amoveo-network-status')
+@app.route('/')
 def index():
+    peers = session.query(Peer).order_by(Peer.height.desc()).order_by(Peer.url.desc()).all()
+    top_height = get_top_height(peers)
+    num_top_height_peers = get_num_height_peers(top_height)
+    return render_template('index.html', peers=peers, top_height=top_height, num_top_height_peers=num_top_height_peers)
+
+
+# To be removed later
+@app.route('/amoveo-network-status')
+def network_status():
     peers = session.query(Peer).order_by(Peer.height.desc()).order_by(Peer.url.desc()).all()
     top_height = get_top_height(peers)
     num_top_height_peers = get_num_height_peers(top_height)
